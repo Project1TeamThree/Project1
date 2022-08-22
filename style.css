@@ -1,0 +1,13 @@
+body {
+    background-color: #8F98A0;
+}
+
+.header {
+    background-color: #171a21;
+    background-size: auto;
+    color: #ffffff;
+    font-size: 35px;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Silkscreen';
+}
