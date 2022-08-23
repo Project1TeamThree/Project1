@@ -17,3 +17,28 @@ body {
     background-color: #8F98A0;
     
 }
+
+.cheapshark {
+   width: 500px;
+   max-width: fit-content;
+   height: auto;
+   background-color: aqua;
+   margin: 15px;
+   display: flex;
+   margin-left: 10%;
+   margin-right: auto;
+}
+
+.sideTitle {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+}
+
+.content-card{
+    width: 400px;
+    height: 400px;
+    border: 10px;
+    border-color: black;
+}
