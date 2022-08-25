@@ -2,6 +2,11 @@ body {
     background-color: #8F98A0;
 }
 
+.btn {
+    margin-top: 10px;
+    font-size: 25px;
+}
+
 .header {
     background-color: #171a21;
     background-size: auto;
@@ -12,9 +17,49 @@ body {
     font-family: 'Silkscreen';
 }
 
+.card-header {
+    background-color: #171a21;
+    color: #ffffff;
+    font-family: 'Silkscreen';
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    font-size: 25px;
+}
+
 .card {
     align-items: center;
     background-color: #8F98A0;
+    border: none;
+}
+
+.element {
+    display: inline-block;
+    width: fit-content;
+    height: 550px;
+    text-align: center;
+    font-size: 35px;
+    font-family: 'Silkscreen';
+}
+
+.left {
+    background-color: green;
+}
+
+.right {
+    background-color: yellow;
+}
+
+.footer {
+    background-color: #171a21;
+    color: #ffffff;
+    text-align: center;
+    height: 50px;
+    font-size: 25px;
+}
+
     
 }
 
@@ -42,4 +87,7 @@ body {
     border: 10px;
     border-color: black;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> d7a90c2dc4217d7a4a80d9a7d0a9a663d76cf633
