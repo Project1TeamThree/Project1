@@ -18,7 +18,8 @@ function display(data){
     for (let i = 0; i < data.length; i++){
         var newLi = document.createElement('li');
         newLi.textContent = data[i].internalName;
-        resultList.append(newLi)
+        // resultList.append(newLi)
+        document.getElementById('cheap-shark').appendChild(newLi)
     }
 }
 
@@ -43,7 +44,8 @@ function getMarketTwo(title){
 
 
 document.getElementById('searchButton').addEventListener('click', function(){
-    userInput = document.getElementById("city").value;
+    userInput = document.getElementById("searchBar").value;
     getMarket(userInput);
     getMarketTwo(userInput);
 })
+
