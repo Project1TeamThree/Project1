@@ -12,6 +12,16 @@ function testFunction(){
 }
 
 
+function display(data){
+    for (let i = 0; i < data.length; i++){
+        var newLi = document.createElement('li');
+        newLi.textContent = data[i].internalName;
+        // resultList.append(newLi)
+        document.getElementById('cheap-shark').appendChild(newLi)
+    }
+}
+
+
 
 
 
@@ -63,9 +73,14 @@ function display(data){
 
 
 document.getElementById('searchButton').addEventListener('click', function(){
+
     userInput = document.getElementById("city").value;
     getAppIDs(userInput);
 })
 
 
+
+    userInput = document.getElementById("searchBar").value;
+    getMarket(userInput);
+    getMarketTwo(userInput);
 
