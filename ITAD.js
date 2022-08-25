@@ -12,9 +12,23 @@ function priceData(list){
 
 function displayITAD(data){
     // console.log(data)
-    for (x in data) {
-        let itadData = data[x];
+    testdata = data["data"]
+    console.log(testdata);
+    for (x in testdata) {
+        let itadData = testdata[x];
         console.log("ITAD_TEST",itadData);
+    for (x in itadData){
+        let dataspin = itadData[x];
+        console.log(dataspin);
+    for (x in dataspin) {
+        let datafinal = dataspin[x];
+        console.log("plz:", datafinal);
+        gamePrice = document.createElement('li');
+        gamePrice.textContent = datafinal.shop.name;
+        rList.append(gamePrice)
+    }
+    }
+
     }
     // for (let i = 0; i < data.length; i++) {
     //     var List = document.createElement('li');

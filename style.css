@@ -64,24 +64,6 @@ input[type=text] {
 .card-action {
     text-align: center;
 }
-/* .element {
-    display: inline-block;
-    width: fit-content;
-    height: 550px;
-    text-align: center;
-    font-size: 35px;
-    font-family: 'Silkscreen';
-} */
-
-/* .left {
-    background-color: grey;
-    color: #ffffff;
-}
-
-.right {
-    background-color: grey;
-    color: #ffffff;
-} */
 
 .footer {
     background-color: #1b2838;
@@ -112,7 +94,7 @@ input[type=text] {
     border-color: black;
 }
 
-=======
+
 @media only screen and (min-width: 650px) {
     .content {
       flex-wrap: wrap;
