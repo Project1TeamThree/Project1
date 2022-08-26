@@ -1,9 +1,10 @@
-var requestUrl = "https://api.isthereanydeal.com/v01/game/prices/?pretty&key=2afc79d7442b1d5fd726834b16f3974d9bb17def&plains=";
+console.log("Hello")
+var requestUrl = "https://api.isthereanydeal.com/v01/game/prices/?key=2afc79d7442b1d5fd726834b16f3974d9bb17def&plains=";
 var requestUrl2 = "https://api.isthereanydeal.com/v02/game/plain/?key=2afc79d7442b1d5fd726834b16f3974d9bb17def&title="
 var gameName
-var rList = document.getElementById("results-area2")
-function priceData(list){
-    fetch(requestUrl + list)
+var rList = document.getElementById("ITAD")
+function priceData(){
+    fetch(requestUrl)
     .then((response) => response.json())
     .then((data) => {
         displayITAD(data)
@@ -11,7 +12,7 @@ function priceData(list){
 }
 
 function displayITAD(data){
-    // console.log(data)
+    console.log(data)
     testdata = data["data"]
     console.log(testdata);
     for (x in testdata) {
@@ -41,6 +42,6 @@ function displayITAD(data){
 
 
 document.getElementById("searchButton").addEventListener('click', function(){
-    gameName = document.getElementById("city").value;
+    gameName = document.getElementById("searchBar").value;
     priceData(gameName)
 })
