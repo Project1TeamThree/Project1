@@ -1,10 +1,13 @@
 console.log("Hello")
 var requestUrl = "https://api.isthereanydeal.com/v01/game/prices/?key=2afc79d7442b1d5fd726834b16f3974d9bb17def&plains=";
 var requestUrl2 = "https://api.isthereanydeal.com/v02/game/plain/?key=2afc79d7442b1d5fd726834b16f3974d9bb17def&title="
+var requestUrl3 = "https://api.isthereanydeal.com/v01/game/plain/list/?key=2afc79d7442b1d5fd726834b16f3974d9bb17def&shops=";
 var gameName
 var rList = document.getElementById("ITAD")
-function priceData(){
-    fetch(requestUrl)
+
+function priceData(list){
+    fetch(requestUrl + list)
+
     .then((response) => response.json())
     .then((data) => {
         displayITAD(data)
@@ -14,7 +17,7 @@ function priceData(){
 function displayITAD(data){
     console.log(data)
     testdata = data["data"]
-    console.log(testdata);
+    console.log("test:",testdata);
     for (x in testdata) {
         let itadData = testdata[x];
         console.log("ITAD_TEST",itadData);
@@ -24,8 +27,11 @@ function displayITAD(data){
     for (x in dataspin) {
         let datafinal = dataspin[x];
         console.log("plz:", datafinal);
+        shopName = document.createElement('li');
+        shopName.textContent = datafinal.shop.name;
         gamePrice = document.createElement('li');
-        gamePrice.textContent = datafinal.shop.name;
+        gamePrice.textContent = datafinal.price_new;
+        rList.append(shopName)
         rList.append(gamePrice)
     }
     }
@@ -39,9 +45,18 @@ function displayITAD(data){
     
 }
 
+var str = 'cult of the the lamb'
+str = str.split(' ').join('');
+str = str.split('the').join('');
+console.log("STR TEST:",str);
 
 
 document.getElementById("searchButton").addEventListener('click', function(){
     gameName = document.getElementById("searchBar").value;
+
+    gameName = gameName.split(' ').join('');
+    gameName = gameName.split('the').join('');
+    console.log("USERINPUT:",gameName);
+
     priceData(gameName)
 })
