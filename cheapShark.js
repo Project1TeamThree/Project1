@@ -1,7 +1,7 @@
 // console.log("hi");
 var requestUrlCheapShark = "https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=15";
 var userInput
-var resultList = document.getElementById("results-area")
+var resultList = document.getElementById("card-content")
 
 requestUrlCheapShark = "https://www.cheapshark.com/api/1.0/games?title="
 // function getMarket(){
@@ -43,7 +43,7 @@ function getMarketTwo(title){
 
 
 document.getElementById('searchButton').addEventListener('click', function(){
-    userInput = document.getElementById("city").value;
+    userInput = document.getElementById("searchBar").value;
     getMarket(userInput);
     getMarketTwo(userInput);
 })
