@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
     <!-- <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@1&family=Fira+Code&family=Passion+One:wght@700&family=Permanent+Marker&family=Silkscreen&display=swap" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@1&family=Fira+Code&family=Nanum+Pen+Script&family=Passion+One:wght@700&family=Permanent+Marker&family=Silkscreen&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
@@ -19,7 +19,7 @@
     Search For Your Games Here
     </header>
     </div>
-
+        <div id="search-history-area"></div>
         <div class = "search-area"> 
             <form id="user-form" class="card-body">
                 <input name="searchBar" id="searchBar" type="text" autofocus="true" class="form-input" placeholder="Search Here"/>
@@ -35,12 +35,12 @@
             <div class="col s12 m6">
               <div class="card">
                 <div class="card-content white-text">
-                  <span class="card-title">We found deals for these games:</span>
+                  <span class="card-title" id='notice'>We found deals for these games:</span>
                   <ul id="cheap-shark"></ul>
                 </div>
                 <div class="card-action">
-                  <a href="#">This is a link</a>
-                  <a href="#">This is a link</a>
+                  <!-- <a href="#">This is a link</a>
+                  <a href="#">This is a link</a> -->
                 </div>
               </div>
             </div>
@@ -80,7 +80,7 @@
 </body>
 
 
-    <script src="cheapShark.js"></script>
+    <script src="./assets/js/cheapShark.js"></script>
     <!-- <script src="ITAD.js"></script> -->
 
 </html>
