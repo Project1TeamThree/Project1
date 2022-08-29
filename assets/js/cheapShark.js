@@ -73,12 +73,12 @@ function getGameNames(array){
     })
 }
 
-// Makes the game/info/title more readable to ITAD API.
-function parseTitle (title) {
-    parsedTitle = title.split(' ').join('');
-    parsedTitle = parsedTitle.split(' ').join('');
-    return parsedTitle;
-}
+// // Makes the game/info/title more readable to ITAD API.
+// function parseTitle (title) {
+//     parsedTitle = title.split(' ').join('');
+//     parsedTitle = parsedTitle.split(' ').join('');
+//     return parsedTitle;
+// }
 
 // function getDealInfo(dealID, storeID){
 //     fetch("https://www.cheapshark.com/api/1.0/deals?id=" + dealID)
@@ -100,9 +100,17 @@ function displayHistory () {
     for (let i = 0; i < searchHistory.length; i++){
         var newButton = document.createElement('button');
         newButton.setAttribute('class', 'btn btn-primary history-button');
-        newButton.setAttribute('data-title', parseTitle(searchHistory[i]));
+        newButton.setAttribute('data-title', searchHistory[i]);
         newButton.innerHTML = searchHistory[i];
         historyDisplay.append (newButton);
+    }
+    // Create a button to delete the history if any exists.
+    if (searchHistory.length > 0) {
+        var newButton = document.createElement('button');
+        newButton.setAttribute('class', 'btn btn-primary delete-button');
+        newButton.setAttribute('data-delete', true);
+        newButton.innerHTML = "X Clear History";
+        historyDisplay.append(newButton);
     }
 }
 
@@ -116,16 +124,18 @@ function display(data){
         var gameListing = document.createElement('li');
         gameListing.classList.add('game-listing')
 
-        // Name
-        var listingName = document.createElement('p');
-        listingName.textContent = gameData.info.title;
-        gameListing.append(listingName);
+
 
 
         // Image
         var listingImage = document.createElement('img');
         listingImage.setAttribute('src', gameData.info.thumb);
         gameListing.append(listingImage);
+
+        // Name
+        var listingName = document.createElement('p');
+        listingName.textContent = gameData.info.title;
+        gameListing.append(listingName);
 
         // Lowest (CheapShark) price
         var listingPrice = document.createElement('p');
@@ -135,7 +145,7 @@ function display(data){
         // Button to take you to buying options
         var listingButton = document.createElement('button');
         listingButton.textContent = 'Store Options';
-        listingButton.setAttribute('id',parseTitle(gameData.info.title));
+        //listingButton.setAttribute('data-id',parseTitle(gameData.info.title));
         listingButton.setAttribute('data-title', gameData.info.title)
         gameListing.append(listingButton);
 
@@ -162,16 +172,27 @@ userInput.addEventListener('keypress', function(event){
     }
 })
 
-// Listen for clicking on buttons other than the search bar to send to advanced results page.
+// Listen for clicking on buttons
 document.addEventListener('click', function(event){
-    // Check to make sure that it's a button and not the search button or a search history button
-    if (event.target.nodeName == "BUTTON" && event.target.id != 'searchButton' && !event.target.classList.contains('history-button')){
-        // Add it to search history if it's not already there.
-        if (!searchHistory.includes(event.target.dataset.title)) {
-            searchHistory.push(event.target.dataset.title)
-            localStorage.setItem('searchHistory', JSON.stringify(searchHistory))
+        if (event.target.nodeName != 'BUTTON') {
+            return;
+        } else {
+            var button = event.target;
+            // If it has a data-title, we know it's a Store Options or History button, and it should take us to the results page.
+            if (button.dataset.title) {
+                // Add it to search history if it's not already there.
+                if (!searchHistory.includes(event.target.dataset.title)) {
+                    searchHistory.push(event.target.dataset.title)
+                    localStorage.setItem('searchHistory', JSON.stringify(searchHistory))
+                }
+                // Send us to the results page with the title included in a query string.
+                document.location.href = './results.html?q=' + event.target.dataset.title;
+
+            // If it has the data-delete attribute it's the delete history button.
+            } else if (button.dataset.delete) {
+                localStorage.clear();
+                searchHistory = [];
+                historyDisplay.innerHTML = "";  
+            }
         }
-        //console.log(event.target.dataset.title)
-        document.location.href = './results.html?q=' + event.target.id
-    }
-})
+    })

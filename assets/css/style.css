@@ -170,3 +170,7 @@ li {
 .game-listing img {
     max-height: 100%;
 }
+
+.delete-button {
+    background-color: red;
+}
