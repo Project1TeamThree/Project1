@@ -132,18 +132,23 @@ function display(data){
         listingImage.setAttribute('src', gameData.info.thumb);
         gameListing.append(listingImage);
 
+        // Div to arrange name/price because putting things in boxes is the only CSS life I've ever known.
+        var div = document.createElement('div');
+        gameListing.append(div);
+
         // Name
         var listingName = document.createElement('p');
         listingName.textContent = gameData.info.title;
-        gameListing.append(listingName);
+        div.append(listingName);
 
         // Lowest (CheapShark) price
         var listingPrice = document.createElement('p');
         listingPrice.textContent = "Lowest Price: $" + gameData.deals[0].price;
-        gameListing.append(listingPrice);
+        div.append(listingPrice);
 
         // Button to take you to buying options
         var listingButton = document.createElement('button');
+        listingButton.setAttribute('class', 'btn btn-primary')
         listingButton.textContent = 'Store Options';
         //listingButton.setAttribute('data-id',parseTitle(gameData.info.title));
         listingButton.setAttribute('data-title', gameData.info.title)

@@ -162,9 +162,12 @@ li {
     background-color: #171a21;
 }
 
-.game-listing.button {
-    height: 50px;
-    max-height: 50px;
+.game-listing button {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width: 130px;
+    height: 70px;
+    font-size: small;
 }
 
 .game-listing img {
@@ -173,4 +176,9 @@ li {
 
 .delete-button {
     background-color: red;
+    margin: 10px;
+}
+
+.history-button {
+    margin: 10px;
 }
