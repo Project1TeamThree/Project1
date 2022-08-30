@@ -69,6 +69,7 @@ function getGameNames(array){
     .then((response) => response.json())
     .then((data) => {
         display(data);
+        localStorage.setItem('cheapshark', JSON.stringify(data));
         //getDealInfo()
     })
 }
@@ -100,8 +101,9 @@ function displayHistory () {
     for (let i = 0; i < searchHistory.length; i++){
         var newButton = document.createElement('button');
         newButton.setAttribute('class', 'btn btn-primary history-button');
-        newButton.setAttribute('data-title', searchHistory[i]);
-        newButton.innerHTML = searchHistory[i];
+        newButton.setAttribute('data-title', searchHistory[i].title);
+        newButton.setAttribute('data-gameid', searchHistory[i].gameid);
+        newButton.textContent = searchHistory[i].title;
         historyDisplay.append (newButton);
     }
     // Create a button to delete the history if any exists.
@@ -118,7 +120,8 @@ function displayHistory () {
 function display(data){
 
     document.getElementById('card1').classList.remove('hidden');
-    console.log("User-friendly Data:", data)
+    console.log("User-friendly Data:", data);
+    localStorage.setItem('CheapSharkData', JSON.stringify(data))
     for (x in data){
         let gameData = data[x]
         var gameListing = document.createElement('li');
@@ -151,7 +154,8 @@ function display(data){
         listingButton.setAttribute('class', 'btn btn-primary')
         listingButton.textContent = 'Store Options';
         //listingButton.setAttribute('data-id',parseTitle(gameData.info.title));
-        listingButton.setAttribute('data-title', gameData.info.title)
+        listingButton.setAttribute('data-title', gameData.info.title);
+        listingButton.setAttribute('data-gameid', x)
         gameListing.append(listingButton);
 
         // var gameListings = document.querySelectorAll('#cheap-shark > *');
@@ -186,12 +190,20 @@ document.addEventListener('click', function(event){
             // If it has a data-title, we know it's a Store Options or History button, and it should take us to the results page.
             if (button.dataset.title) {
                 // Add it to search history if it's not already there.
-                if (!searchHistory.includes(event.target.dataset.title)) {
-                    searchHistory.push(event.target.dataset.title)
+                var objSearch = searchHistory.find(item => item.gameid == button.dataset.gameid)
+                // console.log('Search History Array:', searchHistory)
+                // console.log('Find() test:', objSearch.title)
+                if (objSearch == undefined) {
+                    var historyObject = {
+                        title: button.dataset.title,
+                        gameid: button.dataset.gameid
+                    }
+                    console.log("Check!")
+                    searchHistory.push(historyObject)
                     localStorage.setItem('searchHistory', JSON.stringify(searchHistory))
                 }
                 // Send us to the results page with the title included in a query string.
-                document.location.href = './results.html?q=' + event.target.dataset.title;
+                document.location.href = './results.html?q=' + event.target.dataset.gameid;
 
             // If it has the data-delete attribute it's the delete history button.
             } else if (button.dataset.delete) {

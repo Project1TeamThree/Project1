@@ -4,11 +4,76 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@1&family=Fira+Code&family=Passion+One:wght@700&family=Permanent+Marker&family=Silkscreen&display=swap" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@1&family=Fira+Code&family=Nanum+Pen+Script&family=Passion+One:wght@700&family=Permanent+Marker&family=Silkscreen&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/results.style.css">
   <title>Document</title>
 </head>
 <body>
-  <h1>Here is where we would display the actual buying options for the game selected on the previous page</h1>
-  <h2> Game selected: <span id='searchedGame'></span></h2>
+  <!-- <h1>Here is where we would display the actual buying options for the game selected on the previous page</h1> -->
+  
+  
+  <div class = "heading-nav-bar">
+    <h2 id="test-heading"> Game selected: <span id='searchedGame'></span></h2>
+    
+    <button id="backButton" class="btn btn-primary"> Home </button>
+
+
+   
+    
+
+
+  </div>        
+
+  
+    <div class  = "content">
+
+        <!-- card 1 -->
+        <div class="row" id="card1">
+            <div class="col s12 m6">
+              <div class="card">
+                <div class="card-content white-text">
+                  <span class="card-title" id='notice'>Cheap Shark</span>
+                  <ul id="cheap-shark"></ul>
+                </div>
+                <div class="card-action">
+                  <!-- <a href="#">This is a link</a>
+                  <a href="#">This is a link</a> -->
+                </div>
+              </div>
+            </div>  
+          </div>
+
+
+          <!-- card 2 -->
+          <div class="row">
+            <div class="col s12 m6">
+              <div class="card">
+                <div class="card-content white-text">
+                  <span class="card-title">Is There Any Deal</span>
+                  <ul id="ITAD"></ul>
+                </div>
+                <div class="card-action">
+                </div>
+              </div>
+            </div>
+          </div>
+
+    </div>
+        <footer class="footer">
+
+            <p>Brought to you by The Gaming Grandpas</p>
+
+        </footer>
+
+
+
+    <div class = "placeholder" id = "placeholder">
+
+    <script src="./assets/js/ITAD.js"></script>
 
   <script src="./assets/js/results.js"></script>
 </body>

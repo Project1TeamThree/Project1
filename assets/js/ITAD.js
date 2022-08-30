@@ -1,12 +1,15 @@
 console.log("Hello")
-var requestUrl = "https://api.isthereanydeal.com/v01/game/prices/?key=2afc79d7442b1d5fd726834b16f3974d9bb17def&plains=";
-var requestUrl2 = "https://api.isthereanydeal.com/v02/game/plain/?key=2afc79d7442b1d5fd726834b16f3974d9bb17def&title="
-var requestUrl3 = "https://api.isthereanydeal.com/v01/game/plain/list/?key=2afc79d7442b1d5fd726834b16f3974d9bb17def&shops=";
-var gameName
-var rList = document.getElementById("ITAD")
+var itadPriceCheck = "https://api.isthereanydeal.com/v01/game/prices/?key=2afc79d7442b1d5fd726834b16f3974d9bb17def&plains=";
+var itadGameSearch = "https://api.isthereanydeal.com/v02/search/search/?key=2afc79d7442b1d5fd726834b16f3974d9bb17def&q=&limit=15";
+var itadPriceLow = "https://api.isthereanydeal.com/v01/game/storelow/?key=2afc79d7442b1d5fd726834b16f3974d9bb17def&plains=&region=us&country=us";
+// var gameName = window.location.search.slice(3);
+var searchHistoryITAD = JSON.parse(localStorage.getItem('searchHistory'));
+var historyObject = searchHistoryITAD.find(item => item.gameid == window.location.search.slice(3));
+var gameName = historyObject.title;
+var rList = document.getElementById("ITAD");
 
 function priceData(list){
-    fetch(requestUrl + list)
+    fetch(itadPriceCheck + list)
 
     .then((response) => response.json())
     .then((data) => {
@@ -45,18 +48,24 @@ function displayITAD(data){
     
 }
 
-var str = 'cult of the the lamb'
-str = str.split(' ').join('');
-str = str.split('the').join('');
-console.log("STR TEST:",str);
+// var str = 'cult of the the lamb'
+// str = str.split(' ').join('');
+// str = str.split('the').join('');
+// console.log("STR TEST:",str);
 
 
-document.getElementById("searchButton").addEventListener('click', function(){
-    gameName = document.getElementById("searchBar").value;
+// document.getElementById("searchButton").addEventListener('click', function(){
+//     gameName = document.getElementById("searchBar").value;
 
-    gameName = gameName.split(' ').join('');
-    gameName = gameName.split('the').join('');
-    console.log("USERINPUT:",gameName);
+//     gameName = gameName.split(' ').join('');
+//     gameName = gameName.split('the').join('');
+//     console.log("USERINPUT:",gameName);
 
-    priceData(gameName)
-})
+//     priceData(gameName)
+// })
+
+gameName = gameName.split(' ').join('');
+gameName = gameName.split('the').join('');
+console.log("USERINPUT:",gameName);
+
+priceData(gameName)
