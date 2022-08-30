@@ -76,3 +76,14 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
+#notice {
+  color: black;
+  font-weight: bold;
+}
+
+#test-heading {
+  color: white;
+  display:flex;
+  justify-content: center;
+}

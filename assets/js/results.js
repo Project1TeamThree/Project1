@@ -1,5 +1,3 @@
-var searchedGameName = window.location.search.slice(3);
-
 var gameNameDisplay = document.getElementById('test-heading');
 
 var searchHistoryArray = JSON.parse(localStorage.getItem('searchHistory'));
@@ -9,7 +7,7 @@ var results = document.getElementById('cheap-shark');
 var dealLookupURL = 'https://www.cheapshark.com/api/1.0/games?id=';
 
 var gameid = window.location.search.slice(3);
-console.log("test",window.location.search.slice(3))
+//console.log("test",window.location.search.slice(3))
 
 var histObj = searchHistoryArray.find(item => item.gameid == gameid);
 
@@ -21,15 +19,15 @@ console.log("Store Info: ", storeReference)
 
 
 
-gameNameDisplay.textContent = searchedGameName.split('%20').join(' ');
+gameNameDisplay.textContent = gametitle.split('%20').join(' ');
 
 
 function getCheapSharkDeals(gameid){
-    console.log('Constructed URL: ', dealLookupURL + gameid)
+    //console.log('Constructed URL: ', dealLookupURL + gameid)
     fetch(dealLookupURL + gameid)
     .then((response) => response.json())
     .then ((data) => {
-        console.log('Sale Data: ', data)
+        console.log('CheapShark Sale Data: ', data)
         
         for (let i=0; i < data.deals.length; i++){
 
@@ -38,11 +36,14 @@ function getCheapSharkDeals(gameid){
             dealListing.classList.add("dealListing")
 
             // Put the associated dealID in its dataset so that it can be linked later
-            dealListing.setAttribute("data-dealid", data.deals[i].dealID)
-            var storeObject = storeReference[data.deals[i].storeID]
+            dealListing.setAttribute("data-dealurl", "https://www.cheapshark.com/redirect?dealID=" + data.deals[i].dealID)
+            var storeObject = storeReference.find(entry => entry.storeID == data.deals[i].storeID)
+            console.log("StoreObject Check: ", storeObject)
 
             var dealStoreImage = document.createElement('img');
-            dealStoreImage.setAttribute('src', "https://www.cheapshark.com/img/stores/banners/" + data.deals[i].storeID + ".png")
+            var imgRef = storeObject.storeID;
+            imgRef --;
+            dealStoreImage.setAttribute('src', "https://www.cheapshark.com/img/stores/banners/" + imgRef + ".png")
             dealListing.append(dealStoreImage);
 
             var orgDiv = document.createElement('div');
@@ -76,8 +77,8 @@ document.getElementById('backButton').addEventListener('click', function(){
 })
 
 document.addEventListener('click', function(event){
-    if (event.target.dataset.dealid){
+    if (event.target.dataset.dealurl){
         // console.log("Click!")
-        document.location.href = "https://www.cheapshark.com/redirect?dealID=" + event.target.dataset.dealid
+        document.location.href = event.target.dataset.dealurl
     }
 })
