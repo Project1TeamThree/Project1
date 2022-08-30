@@ -1,11 +1,17 @@
 body {
     background-color: #171a21;
+    height: 100vh
 }
 
 .btn {
     margin-top: 10px;
     font-size: 25px;
     color: #171a21;
+}
+
+.row .col {
+    display: flex;
+    flex-direction: row;
 }
 
 .header {
@@ -44,6 +50,7 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 .searchcard {
     align-items: center;
     background-color: #171a21;
@@ -87,10 +94,12 @@ input[type=text] {
     text-align: center;
     height: 70px;
     font-size: 20px;
-    position: fixed;
-    left: 0;
-    bottom: 0;
     width: 100%;
+}
+
+body > footer {
+    position: sticky;
+    top: 100vh;
 }
 
 .content {
@@ -131,4 +140,72 @@ li {
       flex-wrap: wrap;
     }
   }
+
+.hidden {
+    display:none;
+}
+
+/* #cheap-shark {
+    font-size: large;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#cheap-shark img {
+    max-height: 300px;
+}
+
+#cheap-shark button {
+    height: 50px;  
+} */
+
+
+
+.game-listing {
+    display: flex;
+    justify-content: space-between;
+    border: dotted black 1px;
+    height: 120px;
+    font-size: larger;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 25px;
+    background-color: #171a21;
+}
+
+.game-listing button {
+    margin-top: 20px;
+    margin-bottom: 25px;
+    height: 75px;
+    width: 100px;
+    font-size: 15px;
+}
+
+.game-listing img {
+    max-width: 200px;
+    max-height: 100%;
+}
+
+.delete-button {
+    background-color: red;
+    margin: 10px;
+}
+
+.history-button {
+    margin: 10px;
+}
+
+#test-heading {
+    color: white;
+}
+
+#search-history-area {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+}
+
+.card .card-content p {
+    text-align: center;
+    padding: 2px 20px 2px 20px;
+}
+
 
