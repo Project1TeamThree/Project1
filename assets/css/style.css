@@ -12,6 +12,11 @@ body {
 .row .col {
     display: flex;
     flex-direction: row;
+    margin-right: auto;
+}
+
+#searchButton {
+    float:none;
 }
 
 .header {
@@ -37,10 +42,19 @@ body {
     width: 250px;
 }
 
+.btn-holder{
+    text-align: center;
+}
+
 .form-input {
+    display: block;
+    margin: 0 auto;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+
+    float: none;
+
 }
 .search-area{
     display: flex;
