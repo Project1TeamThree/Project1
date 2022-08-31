@@ -206,9 +206,9 @@ document.addEventListener('click', function(event){
 
             // If it has the data-delete attribute it's the delete history button.
             } else if (button.dataset.delete) {
-                localStorage.clear();
                 searchHistory = [];
-                historyDisplay.innerHTML = "";  
+                localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+                historyDisplay.innerHTML = "";
             }
         }
     })

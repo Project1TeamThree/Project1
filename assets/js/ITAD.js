@@ -1,4 +1,3 @@
-//console.log("Hello")
 var itadPriceCheck = "https://api.isthereanydeal.com/v01/game/prices/?key=2afc79d7442b1d5fd726834b16f3974d9bb17def&plains=";
 var itadGameSearch = "https://api.isthereanydeal.com/v02/search/search/?key=2afc79d7442b1d5fd726834b16f3974d9bb17def&q=&limit=15";
 var itadPriceLow = "https://api.isthereanydeal.com/v01/game/storelow/?key=2afc79d7442b1d5fd726834b16f3974d9bb17def&plains=&region=us&country=us";
@@ -48,17 +47,18 @@ function displayDeals(data) {
     let dealList = data.data[gameName.toLowerCase()].list
     console.log("dealList: ", dealList)
     console.log("length: ", dealList.length)
+    var storeReference = JSON.parse(localStorage.getItem('CSharkStoreIDs'))
     for (let i=0; i < dealList.length; i++){
 
         // Create list item to contain all info
         var dealListing = document.createElement('li');
-        dealListing.classList.add("dealListing")
+        dealListing.classList.add("dealListing");
 
         // Put the associated dealID in its dataset so that it can be linked later
-        dealListing.setAttribute("data-dealurl", dealList[i].url)
+        dealListing.setAttribute("data-dealurl", dealList[i].url);
 
         // Find the store in the CheapShark shop listings so its banners can be pulled
-        var storeObject = storeReference.find(entry => entry.storeName == dealList[i].shop.name)
+        var storeObject = storeReference.find(entry => entry.storeName == dealList[i].shop.name);
 
         if (storeObject == undefined){
             storeObject = {

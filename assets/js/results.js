@@ -16,10 +16,37 @@ var gametitle = histObj.title;
 var storeReference = JSON.parse(localStorage.getItem('CSharkStoreIDs'))
 console.log("Store Info: ", storeReference)
 
+var gameInfoDisplay = document.getElementById("gameInfo")
 
 
 
 gameNameDisplay.textContent = gametitle.split('%20').join(' ');
+
+
+function getGameInfo(dealIDdata){
+    fetch('https://www.cheapshark.com/api/1.0/deals?id=' + dealIDdata.deals[0].dealID)
+    .then((response) => response.json())
+    .then((data) => {
+        var gameInfo = data.gameInfo;
+        console.log("Game Info: ", gameInfo)
+
+        if (gameInfo.publisher != "N/A"){
+            var publisher = document.createElement('p');
+            publisher.textContent = "Publisher: " + gameInfo.publisher;
+            gameInfoDisplay.append(publisher)
+        }
+
+        // TODO: Release date is provided, but must be formatted from Unix timestamp
+
+        var steamRating = document.createElement('p');
+        steamRating.textContent = "Steam Rating: " + gameInfo.steamRatingText + ", at " + gameInfo.steamRatingPercent + "% with " + gameInfo.steamRatingCount + " votes."
+        gameInfoDisplay.append(steamRating)
+
+        var metacriticScore = document.createElement('p');
+        metacriticScore.innerHTML = '<a href="https://www.metacritic.com'+ gameInfo.metacriticLink + '">Metascore</a>: ' + gameInfo.metacriticScore + '%';
+        gameInfoDisplay.append(metacriticScore)
+    })
+}
 
 
 function getCheapSharkDeals(gameid){
@@ -28,7 +55,7 @@ function getCheapSharkDeals(gameid){
     .then((response) => response.json())
     .then ((data) => {
         console.log('CheapShark Sale Data: ', data)
-        
+        getGameInfo(data);
         for (let i=0; i < data.deals.length; i++){
 
             // Create list item to contain all info
@@ -38,7 +65,7 @@ function getCheapSharkDeals(gameid){
             // Put the associated dealID in its dataset so that it can be linked later
             dealListing.setAttribute("data-dealurl", "https://www.cheapshark.com/redirect?dealID=" + data.deals[i].dealID)
             var storeObject = storeReference.find(entry => entry.storeID == data.deals[i].storeID)
-            console.log("StoreObject Check: ", storeObject)
+            // console.log("StoreObject Check: ", storeObject)
 
             var dealStoreImage = document.createElement('img');
             var imgRef = storeObject.storeID;
@@ -62,7 +89,7 @@ function getCheapSharkDeals(gameid){
 
 
             results.append(dealListing);
-            
+            // TODO: Look at including the "Deal Rating" info from Cheap Shark to, like, color-code or something;
         }
         
     })
