@@ -73,7 +73,7 @@ function displayDeals(data) {
             imageRef --;
             dealStoreImage.setAttribute('src', "https://www.cheapshark.com/img/stores/banners/" + imageRef + ".png")
         } else {
-            dealStoreImage.setAttribute('src', '#')
+            dealStoreImage.setAttribute('src', 'https://via.placeholder.com/50')
         }
         dealListing.append(dealStoreImage);
 

@@ -54,7 +54,7 @@ function getAppIDs(title){
         } else {
             document.getElementById('notice').textContent = 'We found deals for these games:'
         }
-        for (let i=0; i < data.length-1 ; i++){
+        for (let i=0; i < data.length ; i++){
             appIDarrays.push(data[i].gameID)
         }
         console.log("ID Array: ", appIDarrays);
