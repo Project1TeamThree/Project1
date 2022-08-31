@@ -28,7 +28,7 @@ function testFunction(){
 }
 
 // Gets the cheapshark store list on launch so that "storeID" can be referenced easily
-function displayStoreInfo(){
+function getStoreInfo(){
     fetch("https://www.cheapshark.com/api/1.0/stores")
     .then((response) => response.json())
     .then((data) => {
@@ -36,11 +36,11 @@ function displayStoreInfo(){
         for (let i = 0; i < data.length; i++){
             storeInfoArray.push(data[i].storeName)
         }
-        console.log(storeInfoArray)
+        localStorage.setItem("CSharkStoreIDs", JSON.stringify(data))
     })
 }
 
-displayStoreInfo();
+getStoreInfo();
 
 function getAppIDs(title){
     var appIDarrays = [];
@@ -54,7 +54,7 @@ function getAppIDs(title){
         } else {
             document.getElementById('notice').textContent = 'We found deals for these games:'
         }
-        for (let i=0; i < data.length-1 ; i++){
+        for (let i=0; i < data.length ; i++){
             appIDarrays.push(data[i].gameID)
         }
         console.log("ID Array: ", appIDarrays);
@@ -69,7 +69,6 @@ function getGameNames(array){
     .then((response) => response.json())
     .then((data) => {
         display(data);
-        localStorage.setItem('cheapshark', JSON.stringify(data));
         //getDealInfo()
     })
 }
@@ -207,9 +206,9 @@ document.addEventListener('click', function(event){
 
             // If it has the data-delete attribute it's the delete history button.
             } else if (button.dataset.delete) {
-                localStorage.clear();
                 searchHistory = [];
-                historyDisplay.innerHTML = "";  
+                localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+                historyDisplay.innerHTML = "";
             }
         }
     })
