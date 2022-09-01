@@ -1,16 +1,32 @@
 # Project1
 
-<h> Gaming Grandpa's Game Deal Lookup <h> 
+## Gaming Grandpa's Game Deal Lookup
   
   
-  <p> Link <p> 
+  <p> https://project1teamthree.github.io/p1t3-GamingGrandpas/ <p> 
+  
+  ![image](https://user-images.githubusercontent.com/109123352/188028576-4d7fe60c-42dd-45b4-8f66-13f42fc031df.png)
+  
+  ![image](https://user-images.githubusercontent.com/109123352/188028595-2d117bdd-785d-4f06-a894-c425192e3624.png)
+
   
   
   
-  <h2> Goal <h2>
-    <p> Here is goal <p>
+  ## Goal:
     
-   <h2> Purpose <h2> 
-     <p> Here is the purpose <p>
+  <p> The goal of our project is to help gamers, like the gaming grandpas, find the best deals on games they are browsing. The Gaming Grandpas wanted 
+        a centralized location for a user to search a triple A title, and get the best deal.  <p>
+    
+    
+    
+   ## Usage
      
-    <h2> 
+     How to use our app: 
+       
+        1. On the home page, search for a game title in the search field. 
+        2. Browse for the correct title in the list that is generated. 
+        3. Select Store options. 
+        4. Find the best deal with the provided vendor. 
+    
+     
+    
