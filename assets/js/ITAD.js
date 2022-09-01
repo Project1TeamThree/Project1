@@ -8,13 +8,13 @@ var gameName = historyObject.title;
 var rList = document.getElementById("ITAD");
 
 
-function priceData(list){
+function priceData(list) {
     fetch(itadPriceCheck + list)
 
-    .then((response) => response.json())
-    .then((data) => {
-        displayDeals(data)
-    })
+        .then((response) => response.json())
+        .then((data) => {
+            displayDeals(data)
+        })
 }
 
 // function displayITAD(data){
@@ -48,7 +48,7 @@ function displayDeals(data) {
     console.log("dealList: ", dealList)
     console.log("length: ", dealList.length)
     var storeReference = JSON.parse(localStorage.getItem('CSharkStoreIDs'))
-    for (let i=0; i < dealList.length; i++){
+    for (let i = 0; i < dealList.length; i++) {
 
         // Create list item to contain all info
         var dealListing = document.createElement('li');
@@ -60,7 +60,7 @@ function displayDeals(data) {
         // Find the store in the CheapShark shop listings so its banners can be pulled
         var storeObject = storeReference.find(entry => entry.storeName == dealList[i].shop.name);
 
-        if (storeObject == undefined){
+        if (storeObject == undefined) {
             storeObject = {
                 storeName: dealList[i].shop.name,
                 storeID: false
@@ -68,9 +68,9 @@ function displayDeals(data) {
         }
 
         var dealStoreImage = document.createElement('img');
-        if (storeObject.storeID){
+        if (storeObject.storeID) {
             var imageRef = storeObject.storeID;
-            imageRef --;
+            imageRef--;
             dealStoreImage.setAttribute('src', "https://www.cheapshark.com/img/stores/banners/" + imageRef + ".png")
         } else {
             dealStoreImage.setAttribute('src', 'https://via.placeholder.com/50')
@@ -86,14 +86,14 @@ function displayDeals(data) {
 
         var dealPrice = document.createElement('p');
         dealPrice.textContent = "$" + dealList[i].price_old;
-        if(dealList[i].price_new < dealList[i].price_old){
+        if (dealList[i].price_new < dealList[i].price_old) {
             dealPrice.innerHTML = "<del>" + dealPrice.textContent + "</del> $" + dealList[i].price_new
         }
         orgDiv.append(dealPrice)
 
 
         rList.append(dealListing);
-    
+
     }
 }
 // var str = 'cult of the the lamb'

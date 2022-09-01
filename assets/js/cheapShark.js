@@ -11,7 +11,7 @@ var searchHistory;
 
 // Sets some initial variables based on what we find in local storage.
 var historySave = JSON.parse(localStorage.getItem("searchHistory"));
-if (historySave == null || historySave == undefined){
+if (historySave == null || historySave == undefined) {
     searchHistory = [];
 } else {
     searchHistory = historySave;
@@ -23,54 +23,54 @@ if (historySave == null || historySave == undefined){
 requestUrlCheapShark = "https://www.cheapshark.com/api/1.0/games?title=";
 
 
-function testFunction(){
+function testFunction() {
     console.log("The test function was called successfully")
 }
 
 // Gets the cheapshark store list on launch so that "storeID" can be referenced easily
-function getStoreInfo(){
+function getStoreInfo() {
     fetch("https://www.cheapshark.com/api/1.0/stores")
-    .then((response) => response.json())
-    .then((data) => {
-        console.log("STORE INFO:", data)
-        for (let i = 0; i < data.length; i++){
-            storeInfoArray.push(data[i].storeName)
-        }
-        localStorage.setItem("CSharkStoreIDs", JSON.stringify(data))
-    })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log("STORE INFO:", data)
+            for (let i = 0; i < data.length; i++) {
+                storeInfoArray.push(data[i].storeName)
+            }
+            localStorage.setItem("CSharkStoreIDs", JSON.stringify(data))
+        })
 }
 
 getStoreInfo();
 
-function getAppIDs(title){
+function getAppIDs(title) {
     var appIDarrays = [];
     fetch(requestUrlCheapShark + title + "&limit=60")
-    .then((response) => response.json())
-    .then((data) => {
-        console.log("CheapShark Data:", data)
-        // display(data)
-        if (data.length == 0){
-            document.getElementById('notice').textContent = "Hmmm... we didn't find any games from that search.";
-        } else {
-            document.getElementById('notice').textContent = 'We found deals for these games:'
-        }
-        for (let i=0; i < data.length ; i++){
-            appIDarrays.push(data[i].gameID)
-        }
-        console.log("ID Array: ", appIDarrays);
-        getGameNames(appIDarrays);
-    });
+        .then((response) => response.json())
+        .then((data) => {
+            console.log("CheapShark Data:", data)
+            // display(data)
+            if (data.length == 0) {
+                document.getElementById('notice').textContent = "Hmmm... we didn't find any games from that search.";
+            } else {
+                document.getElementById('notice').textContent = 'We found deals for these games:'
+            }
+            for (let i = 0; i < data.length; i++) {
+                appIDarrays.push(data[i].gameID)
+            }
+            console.log("ID Array: ", appIDarrays);
+            getGameNames(appIDarrays);
+        });
 }
 
-function getGameNames(array){
+function getGameNames(array) {
     var IDstring = array.toString();
     console.log("Stringified Array:", IDstring)
     fetch("https://www.cheapshark.com/api/1.0/games?ids=" + IDstring)
-    .then((response) => response.json())
-    .then((data) => {
-        display(data);
-        //getDealInfo()
-    })
+        .then((response) => response.json())
+        .then((data) => {
+            display(data);
+            //getDealInfo()
+        })
 }
 
 // // Makes the game/info/title more readable to ITAD API.
@@ -96,32 +96,32 @@ function getGameNames(array){
 
 
 // Creates clickable to bring user back to previously searched games' store listings
-function displayHistory () {
-    for (let i = 0; i < searchHistory.length; i++){
+function displayHistory() {
+    for (let i = 0; i < searchHistory.length; i++) {
         var newButton = document.createElement('button');
         newButton.setAttribute('class', 'btn btn-primary history-button');
         newButton.setAttribute('data-title', searchHistory[i].title);
         newButton.setAttribute('data-gameid', searchHistory[i].gameid);
         newButton.textContent = searchHistory[i].title;
-        historyDisplay.append (newButton);
+        historyDisplay.append(newButton);
     }
     // Create a button to delete the history if any exists.
     if (searchHistory.length > 0) {
         var newButton = document.createElement('button');
         newButton.setAttribute('class', 'btn btn-primary delete-button');
         newButton.setAttribute('data-delete', true);
-        newButton.innerHTML = "X Clear History";
+        newButton.innerHTML = "&#10006 Clear History";
         historyDisplay.append(newButton);
     }
 }
 
 // Print the pertinent info from getGameNames into the resultsList
-function display(data){
+function display(data) {
 
     document.getElementById('card1').classList.remove('hidden');
     console.log("User-friendly Data:", data);
     localStorage.setItem('CheapSharkData', JSON.stringify(data))
-    for (x in data){
+    for (x in data) {
         let gameData = data[x]
         var gameListing = document.createElement('li');
         gameListing.classList.add('game-listing')
@@ -166,14 +166,14 @@ function display(data){
 displayHistory();
 
 // Search for games with CheapShark API when button is clicked
-document.getElementById('searchButton').addEventListener('click', function(){
+document.getElementById('searchButton').addEventListener('click', function () {
     userInput = document.getElementById("searchBar").value;
     resultList.innerHTML = "";
     getAppIDs(userInput);
 })
 
 // Treat pressing Enter/Return with focus on search bar as clicking search button
-userInput.addEventListener('keypress', function(event){
+userInput.addEventListener('keypress', function (event) {
     if (event.key === 'Enter') {
         event.preventDefault();
         document.getElementById('searchButton').click();
@@ -181,34 +181,34 @@ userInput.addEventListener('keypress', function(event){
 })
 
 // Listen for clicking on buttons
-document.addEventListener('click', function(event){
-        if (event.target.nodeName != 'BUTTON') {
-            return;
-        } else {
-            var button = event.target;
-            // If it has a data-title, we know it's a Store Options or History button, and it should take us to the results page.
-            if (button.dataset.title) {
-                // Add it to search history if it's not already there.
-                var objSearch = searchHistory.find(item => item.gameid == button.dataset.gameid)
-                // console.log('Search History Array:', searchHistory)
-                // console.log('Find() test:', objSearch.title)
-                if (objSearch == undefined) {
-                    var historyObject = {
-                        title: button.dataset.title,
-                        gameid: button.dataset.gameid
-                    }
-                    console.log("Check!")
-                    searchHistory.push(historyObject)
-                    localStorage.setItem('searchHistory', JSON.stringify(searchHistory))
+document.addEventListener('click', function (event) {
+    if (event.target.nodeName != 'BUTTON') {
+        return;
+    } else {
+        var button = event.target;
+        // If it has a data-title, we know it's a Store Options or History button, and it should take us to the results page.
+        if (button.dataset.title) {
+            // Add it to search history if it's not already there.
+            var objSearch = searchHistory.find(item => item.gameid == button.dataset.gameid)
+            // console.log('Search History Array:', searchHistory)
+            // console.log('Find() test:', objSearch.title)
+            if (objSearch == undefined) {
+                var historyObject = {
+                    title: button.dataset.title,
+                    gameid: button.dataset.gameid
                 }
-                // Send us to the results page with the title included in a query string.
-                document.location.href = './results.html?q=' + event.target.dataset.gameid;
+                console.log("Check!")
+                searchHistory.push(historyObject)
+                localStorage.setItem('searchHistory', JSON.stringify(searchHistory))
+            }
+            // Send us to the results page with the title included in a query string.
+            document.location.href = './results.html?q=' + event.target.dataset.gameid;
 
             // If it has the data-delete attribute it's the delete history button.
-            } else if (button.dataset.delete) {
-                searchHistory = [];
-                localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-                historyDisplay.innerHTML = "";
-            }
+        } else if (button.dataset.delete) {
+            searchHistory = [];
+            localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+            historyDisplay.innerHTML = "";
         }
-    })
+    }
+})
