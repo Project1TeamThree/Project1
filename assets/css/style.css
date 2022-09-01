@@ -1,0 +1,255 @@
+body {
+    background-color: #171a21;
+    height: 100vh
+}
+
+.gramps {
+    width: 150px;
+    height: 150px;
+}
+
+img {
+    margin-top: 5px;
+    float: left;
+}
+
+.btn {
+    margin-top: 10px;
+    font-size: 25px;
+    box-shadow: 0px 0px 0px 2px #1b2838 inset, 0px 0px 10px 0px #2a475e;
+    background-image: linear-gradient(to bottom, #1b2838, rgba(126, 94, 162, 0.51));
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.row .search {
+    display: flex;
+    flex-flow: column;
+    flex-direction: column-reverse;
+    align-content: flex-start;
+}
+
+.row .col {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+#searchButton {
+    float:none;
+}
+
+.header {
+    background-color: #1b2838;
+    background-size: auto;
+    color: #ffffff;
+    font-size: 35px;
+    text-align: center;
+    font-family: 'Silkscreen';
+    padding: 0 75px ;
+}
+
+.card-header {
+    background-color: #1b2838;
+    color: #ffffff;
+    font-family: 'Silkscreen';
+    text-align: center;
+}
+
+.card-body {
+    font-size: 25px;
+    text-align: center;
+    width: 250px;
+}
+
+.btn-holder{
+    text-align: center;
+}
+
+.form-input {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+
+    float: none;
+
+}
+.search-area{
+    display: flex;
+    position: relative;
+    align-self: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.searchcard {
+    align-items: center;
+    background-color: #171a21;
+    border: none;
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+}
+
+input[type=text] {
+    color: #ffffff;
+}
+
+.card {
+    width: 1300px;
+    align-items: center;
+    background-color: #1b2838;
+    border: none;
+    margin-top: 25px;
+    
+}
+
+.card .card-title {
+    font-size: 40px;
+}
+
+.card-title {
+    text-align: center;
+    font-style: oblique;
+    padding-bottom: 20px;
+    color: #ffffff;
+}
+
+.card-action {
+    text-align: center;
+}
+
+.footer {
+    background-color: #1b2838;
+    color: #ffffff;
+    text-align: center;
+    height: 70px;
+    font-size: 20px;
+    width: 100%;
+}
+
+body > footer {
+    position: sticky;
+    top: 100vh;
+}
+
+.content {
+    display: flex;
+    /* flex-direction: row-reverse; */
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin-top: 20px;
+}
+
+#cheap-shark {
+    font-family: 'Nanum Pen Script';
+}
+
+li {
+    display: flex;
+    justify-content: center;
+}
+
+/* .card-content {
+    width: 400px;
+    border: 10px;
+    border-color: black;
+    margin: auto;
+} */
+
+
+
+@media only screen and (max-width: 875px) {
+    .content {
+      flex-wrap: wrap;
+    }
+    .header {
+        font-size: 15px;
+    }
+  }
+
+@media only screen and (max-width: 1256px) {
+    .content {
+      flex-wrap: wrap;
+    }
+    .header {
+        font-size: 25px;
+    }
+  }
+
+.hidden {
+    display:none;
+}
+
+/* #cheap-shark {
+    font-size: large;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#cheap-shark img {
+    max-height: 300px;
+}
+
+#cheap-shark button {
+    height: 50px;  
+} */
+
+
+
+.game-listing {
+    display: flex;
+    justify-content: space-between;
+    border: dotted black 1px;
+    height: 120px;
+    font-size: larger;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 25px;
+    background-color: #171a21;
+}
+
+.game-listing button {
+    margin-top: 20px;
+    margin-bottom: 25px;
+    height: 75px;
+    width: 200px;
+    font-size: 15px;
+}
+
+.game-listing img {
+    max-width: 400px;
+    max-height: 100%;
+}
+
+.delete-button {
+    background-color: red;
+    margin: 10px;
+}
+
+.history-button {
+    margin: 10px;
+}
+
+#test-heading {
+    color: white;
+}
+
+#search-history-area {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin-left: 30px;
+}
+
+.card .card-content p {
+    text-align: center;
+    padding: 2px 20px 2px 20px;
+}
